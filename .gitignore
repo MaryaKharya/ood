@@ -31,4 +31,6 @@
 *.out
 *.app
 /SimUDuck/.vs/SimUDuck/v16/Browse.VC.opendb
-SimUDuck/.vs/SimUDuck/v16/Browse.VC.db
+/.vs
+/SimUDuck/.vs
+/SimUDuck/Debug
