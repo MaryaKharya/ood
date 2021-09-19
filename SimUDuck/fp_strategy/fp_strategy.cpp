@@ -10,7 +10,7 @@ using IQuackBehavior = function<void()>;
 using IDanceBehavior = function<void()>;
 
 
-void Fly()
+void FlyBehavior()
 {
 	cout << "I'm flying with wings!!" << endl;
 }
@@ -19,12 +19,12 @@ void FlyNoWay()
 {
 };
 
-void Quack()
+void QuackBehavior()
 {
 	cout << "Quack Quack!!!" << endl;
 }
 
-void Squeak()
+void SqueakBehavior()
 {
 	cout << "Squeek!!!" << endl;
 }
@@ -33,12 +33,12 @@ void MuteQuack()
 {
 };
 
-void DanceMinuet()
+void DanceMinuetBehavior()
 {
 	std::cout << "I'm dancing minuet!\n";
 };
 
-void DanceWaltz()
+void DanceWaltzBehavior()
 {
 	std::cout << "I'm dancing waltz!\n";
 };
@@ -60,15 +60,15 @@ public:
 		assert(m_danceBehavior);
 		SetFlyBehavior(move(flyBehavior));
 	}
-	void oQuack() const
+	void Quack() const
 	{
 		m_quackBehavior();
 	}
-	void oSwim()
+	void Swim()
 	{
 		cout << "I'm swimming" << endl;
 	}
-	void oFly()
+	void Fly()
 	{
 		m_flyBehavior();
 	}
@@ -94,7 +94,7 @@ class MallardDuck : public Duck
 {
 public:
 	MallardDuck()
-		: Duck(Fly, Quack, DanceMinuet)
+		: Duck(FlyBehavior, QuackBehavior, DanceMinuetBehavior)
 	{
 	}
 
@@ -108,7 +108,7 @@ class RedheadDuck : public Duck
 {
 public:
 	RedheadDuck()
-		: Duck(Fly, Quack, DanceWaltz)
+		: Duck(FlyBehavior, QuackBehavior, DanceWaltzBehavior)
 	{
 	}
 	void Display() const override
@@ -132,7 +132,7 @@ class RubberDuck : public Duck
 {
 public:
 	RubberDuck()
-		: Duck(FlyNoWay, Squeak, DanceNoWay)
+		: Duck(FlyNoWay, SqueakBehavior, DanceNoWay)
 	{
 	}
 	void Display() const override
@@ -145,7 +145,7 @@ class ModelDuck : public Duck
 {
 public:
 	ModelDuck()
-		: Duck(FlyNoWay, Quack, DanceNoWay)
+		: Duck(FlyNoWay, QuackBehavior, DanceNoWay)
 	{
 	}
 	void Display() const override
@@ -162,8 +162,8 @@ void DrawDuck(Duck const& duck)
 void PlayWithDuck(Duck& duck)
 {
 	DrawDuck(duck);
-	duck.oQuack();
-	duck.oFly();
+	duck.Quack();
+	duck.Fly();
 	duck.Dance();
 	cout << endl;
 }
@@ -184,6 +184,6 @@ int main()
 
 	ModelDuck modelDuck;
 	PlayWithDuck(modelDuck);
-	modelDuck.SetFlyBehavior(Fly);
+	modelDuck.SetFlyBehavior(FlyBehavior);
 	PlayWithDuck(modelDuck);
 }
