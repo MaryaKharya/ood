@@ -30,3 +30,4 @@
 *.exe
 *.out
 *.app
+/SimUDuck/.vs/SimUDuck/v16/Browse.VC.opendb
