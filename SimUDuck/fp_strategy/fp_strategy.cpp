@@ -29,7 +29,7 @@ void SqueakBehavior()
 	cout << "Squeek!!!" << endl;
 }
 
-void MuteQuack()
+void MuteQuackBehavior()
 {
 };
 
@@ -120,7 +120,7 @@ class DecoyDuck : public Duck
 {
 public:
 	DecoyDuck()
-		: Duck(FlyNoWay, MuteQuack, DanceNoWay)
+		: Duck(FlyNoWay, MuteQuackBehavior, DanceNoWay)
 	{
 	}
 	void Display() const override
@@ -138,19 +138,6 @@ public:
 	void Display() const override
 	{
 		cout << "I'm rubber duck" << endl;
-	}
-};
-
-class ModelDuck : public Duck
-{
-public:
-	ModelDuck()
-		: Duck(FlyNoWay, QuackBehavior, DanceNoWay)
-	{
-	}
-	void Display() const override
-	{
-		cout << "I'm model duck" << endl;
 	}
 };
 
@@ -182,8 +169,4 @@ int main()
 	DecoyDuck decoyDuck;
 	PlayWithDuck(decoyDuck);
 
-	ModelDuck modelDuck;
-	PlayWithDuck(modelDuck);
-	modelDuck.SetFlyBehavior(FlyBehavior);
-	PlayWithDuck(modelDuck);
 }

@@ -182,19 +182,6 @@ public:
 	}
 };
 
-class ModelDuck : public Duck
-{
-public:
-	ModelDuck()
-		: Duck(make_unique<FlyNoWay>(), make_unique<QuackBehavior>(), make_unique<DanceNoWay>())
-	{
-	}
-	void Display() const override
-	{
-		cout << "I'm model duck" << endl;
-	}
-};
-
 void DrawDuck(Duck const& duck)
 {
 	duck.Display();
@@ -222,9 +209,4 @@ int main()
 
 	DecoyDuck decoyDuck;
 	PlayWithDuck(decoyDuck);
-
-	ModelDuck modelDuck;
-	PlayWithDuck(modelDuck);
-	modelDuck.SetFlyBehavior(make_unique<FlyWithWings>());
-	PlayWithDuck(modelDuck);
 }
