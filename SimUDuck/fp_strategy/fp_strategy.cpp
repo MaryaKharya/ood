@@ -62,7 +62,10 @@ public:
 	}
 	void Quack() const
 	{
-		m_quackBehavior();
+		if (m_quackBehavior)
+		{
+			m_quackBehavior();
+		}
 	}
 	void Swim()
 	{
@@ -70,11 +73,17 @@ public:
 	}
 	void Fly()
 	{
-		m_flyBehavior();
+		if (m_flyBehavior)
+		{
+			m_flyBehavior();
+		}
 	}
 	void Dance() const
 	{
-		m_danceBehavior();
+		if (m_danceBehavior)
+		{
+			m_danceBehavior();
+		}
 	}
 	void SetFlyBehavior(IFlyBehavior&& flyBehavior)
 	{
