@@ -235,12 +235,5 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
-*.VC.db
-# Prerequisites
-*.d
-
-/SimUDuck/.vs/SimUDuck/v16/Browse.VC.opendb
-/.vs
-/SimUDuck/.vs
-/SimUDuck/Debug
+*.vc.db
   
