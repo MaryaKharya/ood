@@ -236,5 +236,6 @@ _Pvt_Extensions
 .fake/
 
 *.vc.db
-*/.vs
+
+\SimUDuck\.vs
   
