@@ -237,5 +237,5 @@ _Pvt_Extensions
 
 *.vc.db
 
-\.vs\slnx.sqlite
+\SimUDuck\.vs
   
