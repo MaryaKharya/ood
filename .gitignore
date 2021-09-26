@@ -7,3 +7,5 @@
 /SimUDuck/.vs/SimUDuck/v16
 /SimUDuck/SimUDuck/x64/Debug
 /SimUDuck/x64/Debug
+*.sqlite
+*.json
