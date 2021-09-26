@@ -12,7 +12,10 @@ using IDanceBehavior = function<void()>;
 
 void FlyBehavior()
 {
+	int x = 0;
+	function<int(int)> count = [](int x) {return x++; };
 	cout << "I'm flying with wings!!" << endl;
+	cout << count(x) << endl;
 }
 
 void FlyNoWay()

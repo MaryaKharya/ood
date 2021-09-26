@@ -236,3 +236,11 @@ _Pvt_Extensions
 .fake/
 
 *.VC.db
+# Prerequisites
+*.d
+
+/SimUDuck/.vs/SimUDuck/v16/Browse.VC.opendb
+/.vs
+/SimUDuck/.vs
+/SimUDuck/Debug
+  
