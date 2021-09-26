@@ -9,13 +9,16 @@ using IFlyBehavior = function<void()>;
 using IQuackBehavior = function<void()>;
 using IDanceBehavior = function<void()>;
 
-
 void FlyBehavior()
 {
 	int x = 0;
-	function<int(int)> count = [](int x) {return x++; };
-	cout << "I'm flying with wings!!" << endl;
-	cout << count(x) << endl;
+	auto l = [x]() mutable
+	{
+		++x;
+		cout << "I'm flying with wings!! " << x << endl;
+		//return x;
+	};
+	l();
 }
 
 void FlyNoWay()
@@ -170,6 +173,11 @@ void PlayWithDuck(Duck& duck)
 int main()
 {
 	MallardDuck mallardDuck;
+	PlayWithDuck(mallardDuck);
+	PlayWithDuck(mallardDuck);
+	mallardDuck.SetFlyBehavior(FlyNoWay);
+	PlayWithDuck(mallardDuck);
+	mallardDuck.SetFlyBehavior(FlyBehavior);
 	PlayWithDuck(mallardDuck);
 
 	RedheadDuck redheadDuck;
