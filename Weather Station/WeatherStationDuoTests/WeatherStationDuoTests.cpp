@@ -6,7 +6,7 @@
 #include "../WeatherStationDuo/WeatherData.h"
 #include "../../catch2/catch.hpp"
 
-SCENARIO("PWeatherStationDuo test")
+SCENARIO("WeatherStationDuo test")
 {
 	std::ostringstream out;
 	std::streambuf* coutbuf = std::cout.rdbuf();
