@@ -9,16 +9,14 @@ using IFlyBehavior = function<void()>;
 using IQuackBehavior = function<void()>;
 using IDanceBehavior = function<void()>;
 
-void FlyBehavior()
+function<void()> FlyBehavior()
 {
-	int x = 0;
-	auto l = [x]() mutable
+	int m_flightNumber = 0;
+	return [m_flightNumber]() mutable
 	{
-		++x;
-		cout << "I'm flying with wings!! " << x << endl;
-		//return x;
+		++m_flightNumber;
+		cout << "I'm flying with wings!!\nNumber of my flights: " << m_flightNumber << endl;
 	};
-	l();
 }
 
 void FlyNoWay()
@@ -109,7 +107,7 @@ class MallardDuck : public Duck
 {
 public:
 	MallardDuck()
-		: Duck(FlyBehavior, QuackBehavior, DanceMinuetBehavior)
+		: Duck(FlyBehavior(), QuackBehavior, DanceMinuetBehavior)
 	{
 	}
 
@@ -123,7 +121,7 @@ class RedheadDuck : public Duck
 {
 public:
 	RedheadDuck()
-		: Duck(FlyBehavior, QuackBehavior, DanceWaltzBehavior)
+		: Duck(FlyBehavior(), QuackBehavior, DanceWaltzBehavior)
 	{
 	}
 	void Display() const override
