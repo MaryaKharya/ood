@@ -24,6 +24,7 @@
     <ProjectGuid>{b538f992-d24f-4557-a7b3-37b7d0cd77d8}</ProjectGuid>
     <RootNamespace>WeatherStation</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>WeatherStation</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
