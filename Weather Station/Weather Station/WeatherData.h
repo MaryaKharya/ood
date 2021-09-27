@@ -20,10 +20,6 @@ public:
 		, m_out(out)
 	{}
 private:
-	/* Метод Update сделан приватным, чтобы ограничить возможность его вызова напрямую
-		Классу CObservable он будет доступен все равно, т.к. в интерфейсе IObserver он
-		остается публичным
-	*/
 	void Update(SWeatherInfo const& data) override
 	{
 		std::cout << "Current Temp " << data.temperature << std::endl;
@@ -128,17 +124,14 @@ private:
 class CWeatherData : public CObservable<SWeatherInfo>
 {
 public:
-	// Температура в градусах Цельсия
 	double GetTemperature()const
 	{
 		return m_temperature;
 	}
-	// Относительная влажность (0...100)
 	double GetHumidity()const
 	{
 		return m_humidity;
 	}
-	// Атмосферное давление (в мм.рт.ст)
 	double GetPressure()const
 	{
 		return m_pressure;

@@ -4,12 +4,6 @@
 #include <map>
 #include <functional>
 
-/*
-Шаблонный интерфейс IObserver. Его должен реализовывать класс,
-желающий получать уведомления от соответствующего IObservable
-Параметром шаблона является тип аргумента,
-передаваемого Наблюдателю в метод Update
-*/
 template <typename T>
 class IObserver
 {
@@ -18,10 +12,6 @@ public:
 	virtual ~IObserver() = default;
 };
 
-/*
-Шаблонный интерфейс IObservable. Позволяет подписаться и отписаться на оповещения, а также
-инициировать рассылку уведомлений зарегистрированным наблюдателям.
-*/
 template <typename T>
 class IObservable
 {
@@ -32,7 +22,6 @@ public:
 	virtual void RemoveObserver(IObserver<T>& observer) = 0;
 };
 
-// Реализация интерфейса IObservable
 template <class T>
 class CObservable : public IObservable<T>
 {
@@ -66,8 +55,6 @@ public:
 	}
 
 protected:
-	// Классы-наследники должны перегрузить данный метод, 
-	// в котором возвращать информацию об изменениях в объекте
 	virtual T GetChangedData()const = 0;
 
 private:
