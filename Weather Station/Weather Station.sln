@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Weather Station", "Weather Station\Weather Station.vcxproj", "{B538F992-D24F-4557-A7B3-37B7D0CD77D8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStation", "Weather Station\Weather Station.vcxproj", "{B538F992-D24F-4557-A7B3-37B7D0CD77D8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStationTests", "WeatherStationTests\WeatherStationTests.vcxproj", "{BA2FCAC6-85F2-411A-B2EB-0C8D57B4A4D9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStationDuo", "WeatherStationDuo\WeatherStationDuo.vcxproj", "{2F2B77D2-F9E0-4593-9D68-F015E87852A5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeatherStationDuoTests", "WeatherStationDuoTests\WeatherStationDuoTests.vcxproj", "{30BC3C28-2788-4CCF-B521-2639F12E8AFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,22 @@ Global
 		{BA2FCAC6-85F2-411A-B2EB-0C8D57B4A4D9}.Release|x64.Build.0 = Release|x64
 		{BA2FCAC6-85F2-411A-B2EB-0C8D57B4A4D9}.Release|x86.ActiveCfg = Release|Win32
 		{BA2FCAC6-85F2-411A-B2EB-0C8D57B4A4D9}.Release|x86.Build.0 = Release|Win32
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Debug|x64.ActiveCfg = Debug|x64
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Debug|x64.Build.0 = Debug|x64
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Debug|x86.ActiveCfg = Debug|Win32
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Debug|x86.Build.0 = Debug|Win32
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Release|x64.ActiveCfg = Release|x64
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Release|x64.Build.0 = Release|x64
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Release|x86.ActiveCfg = Release|Win32
+		{2F2B77D2-F9E0-4593-9D68-F015E87852A5}.Release|x86.Build.0 = Release|Win32
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Debug|x64.ActiveCfg = Debug|x64
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Debug|x64.Build.0 = Debug|x64
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Debug|x86.ActiveCfg = Debug|Win32
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Debug|x86.Build.0 = Debug|Win32
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Release|x64.ActiveCfg = Release|x64
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Release|x64.Build.0 = Release|x64
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Release|x86.ActiveCfg = Release|Win32
+		{30BC3C28-2788-4CCF-B521-2639F12E8AFE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
