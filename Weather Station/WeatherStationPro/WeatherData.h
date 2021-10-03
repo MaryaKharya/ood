@@ -1,8 +1,10 @@
-п»ї#pragma once
+#pragma once
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <climits>
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include "Observer.h"
 
 struct SWeatherInfo
@@ -10,41 +12,24 @@ struct SWeatherInfo
 	double temperature = 0;
 	double humidity = 0;
 	double pressure = 0;
-};
-
-
-class CDisplayTest : public IObserver<SWeatherInfo>
-{
-public:
-	CDisplayTest(int observer, std::ostream& out)
-		:m_observer(observer)
-		, m_out(out)
-	{}
-private:
-	void Update(SWeatherInfo const& data) override
-	{
-		std::cout << "Current Temp " << data.temperature << std::endl;
-		std::cout << "Current Hum " << data.humidity << std::endl;
-		std::cout << "Current Pressure " << data.pressure << std::endl;
-		std::cout << "----------------" << std::endl;
-		m_out << m_observer;
-	}
-	int m_observer;
-	std::ostream& m_out;
+	double windSpeed = 0;
+	double windDirection = 0;
 };
 
 class CDisplay : public IObserver<SWeatherInfo>
 {
 private:
-	/* РњРµС‚РѕРґ Update СЃРґРµР»Р°РЅ РїСЂРёРІР°С‚РЅС‹Рј, С‡С‚РѕР±С‹ РѕРіСЂР°РЅРёС‡РёС‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РµРіРѕ РІС‹Р·РѕРІР° РЅР°РїСЂСЏРјСѓСЋ
-		РљР»Р°СЃСЃСѓ CObservable РѕРЅ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРµРЅ РІСЃРµ СЂР°РІРЅРѕ, С‚.Рє. РІ РёРЅС‚РµСЂС„РµР№СЃРµ IObserver РѕРЅ
-		РѕСЃС‚Р°РµС‚СЃСЏ РїСѓР±Р»РёС‡РЅС‹Рј
+	/* Метод Update сделан приватным, чтобы ограничить возможность его вызова напрямую
+		Классу CObservable он будет доступен все равно, т.к. в интерфейсе IObserver он
+		остается публичным
 	*/
 	void Update(SWeatherInfo const& data) override
 	{
 		std::cout << "Current Temp " << data.temperature << std::endl;
 		std::cout << "Current Hum " << data.humidity << std::endl;
 		std::cout << "Current Pressure " << data.pressure << std::endl;
+		std::cout << "Current Wind Speed " << data.windSpeed << std::endl;
+		std::cout << "Current Wind Direction " << data.windDirection << std::endl;
 		std::cout << "----------------" << std::endl;
 	}
 };
@@ -79,30 +64,31 @@ private:
 
 };
 
-class CStatsDisplayTest : public IObserver<SWeatherInfo>
+class CStatsDisplayWindDirection
 {
 public:
-	CStatsDisplayTest(int observer, std::ostream& out)
-		:m_observer(observer)
-		, m_out(out)
-	{}
-private:
-	void Update(SWeatherInfo const& data) override
+	void UpdateData(double windDirection, double windSpeed)
 	{
-		std::cout << "Temperature stats:\n";
-		m_temperature.UpdateData(data.temperature);
-		std::cout << "Humidity stats:\n";
-		m_humidity.UpdateData(data.humidity);
-		std::cout << "Pressure stats:\n";
-		m_pressure.UpdateData(data.pressure);
-		m_out << m_observer;
+		m_sinSum += windSpeed * sin(windDirection * M_PI / 180);
+		m_cosSum += windSpeed * cos(windDirection * M_PI / 180);
+		++m_countAcc;
+		double accDirection = 180 / M_PI * (atan2(m_sinSum / m_countAcc, m_cosSum / m_countAcc));
+		if (windDirection < 0)
+		{
+			windDirection += 360;
+		}
+		std::cout << "Average: " << accDirection << std::endl;
+		std::cout << "----------------" << std::endl;
 	}
-	CStatsDisplayOneParameter m_temperature;
-	CStatsDisplayOneParameter m_humidity;
-	CStatsDisplayOneParameter m_pressure;
-	int m_observer;
-	std::ostream& m_out;
+
+private:
+	double m_sinSum = 0;
+	double m_cosSum = 0;
+	unsigned m_countAcc = 0;
+
 };
+
+
 
 class CStatsDisplay : public IObserver<SWeatherInfo>
 {
@@ -115,10 +101,16 @@ private:
 		m_humidity.UpdateData(data.humidity);
 		std::cout << "Pressure stats:\n";
 		m_pressure.UpdateData(data.pressure);
+		std::cout << "Wind Speed stats:\n";
+		m_windSpeed.UpdateData(data.windSpeed);
+		std::cout << "Wind Direction stats:\n";
+		m_windDirection.UpdateData(data.windDirection, data.windSpeed);
 	}
 	CStatsDisplayOneParameter m_temperature;
 	CStatsDisplayOneParameter m_humidity;
 	CStatsDisplayOneParameter m_pressure;
+	CStatsDisplayOneParameter m_windSpeed;
+	CStatsDisplayWindDirection m_windDirection;
 };
 
 
@@ -137,17 +129,26 @@ public:
 	{
 		return m_pressure;
 	}
-
+	double GetWindSpeed()const
+	{
+		return m_windSpeed;
+	}
+	double GetWindDirection()const
+	{
+		return m_windDirection;
+	}
 	void MeasurementsChanged()
 	{
 		NotifyObservers();
 	}
 
-	void SetMeasurements(double temp, double humidity, double pressure)
+	void SetMeasurements(double temp, double humidity, double pressure, double windSpeed, double windDirection)
 	{
 		m_humidity = humidity;
 		m_temperature = temp;
 		m_pressure = pressure;
+		m_windSpeed = windSpeed;
+		m_windDirection= windDirection;
 
 		MeasurementsChanged();
 	}
@@ -158,10 +159,14 @@ protected:
 		info.temperature = GetTemperature();
 		info.humidity = GetHumidity();
 		info.pressure = GetPressure();
+		info.windSpeed = GetWindSpeed();
+		info.windDirection = GetWindDirection();
 		return info;
 	}
 private:
 	double m_temperature = 0.0;
 	double m_humidity = 0.0;
 	double m_pressure = 760.0;
+	double m_windSpeed = 0.0;
+	double m_windDirection = 0.0;
 };

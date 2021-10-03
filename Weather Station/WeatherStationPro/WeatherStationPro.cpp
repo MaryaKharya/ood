@@ -10,11 +10,10 @@ int main()
 	CStatsDisplay statsDisplay;
 	wd.RegisterObserver(statsDisplay, 9);
 
-	wd.SetMeasurements(3, 0.7, 760);
-	wd.SetMeasurements(4, 0.8, 761);
-	wd.RemoveObserver(statsDisplay);
+	wd.SetMeasurements(3, 0.7, 760, 12, 90);
+	wd.SetMeasurements(4, 0.8, 761, 14, 180);
 
-	wd.SetMeasurements(10, 0.8, 761);
-	wd.SetMeasurements(-10, 0.8, 761);
+	wd.SetMeasurements(10, 0.8, 761, 6, 45);
+	wd.SetMeasurements(-10, 0.8, 761, 20, 0);
 	return 0;
 }
