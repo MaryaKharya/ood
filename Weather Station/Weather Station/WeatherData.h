@@ -33,6 +33,24 @@ private:
 	std::ostream& m_out;
 };
 
+class CDisplayRemoveTest : public IObserver<SWeatherInfo>
+{
+public:
+	CDisplayRemoveTest(IObservable<SWeatherInfo>& observable)
+		: m_observable(observable)
+	{}
+private:
+	void Update(SWeatherInfo const& data) override
+	{
+		std::cout << "Current Temp " << data.temperature << std::endl;
+		std::cout << "Current Hum " << data.humidity << std::endl;
+		std::cout << "Current Pressure " << data.pressure << std::endl;
+		std::cout << "----------------" << std::endl;
+		m_observable.RemoveObserver(*this);
+	}
+	IObservable<SWeatherInfo>& m_observable;
+};
+
 class CDisplay : public IObserver<SWeatherInfo>
 {
 private:
@@ -84,7 +102,7 @@ class CStatsDisplayTest : public IObserver<SWeatherInfo>
 public:
 	CStatsDisplayTest(int observer, std::ostream& out)
 		:m_observer(observer)
-		, m_out(out)
+		, m_out(out)	
 	{}
 private:
 	void Update(SWeatherInfo const& data) override

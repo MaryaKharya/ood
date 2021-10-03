@@ -6,6 +6,14 @@
 #include "../Weather Station/WeatherData.h"
 #include "../../catch2/catch.hpp"
 
+SCENARIO("Remove test")
+{
+	CWeatherData wd;
+	CDisplayRemoveTest display1(wd);
+	wd.RegisterObserver(display1, 3);
+	wd.SetMeasurements(3, 0.7, 760);
+}
+
 SCENARIO("Priority test")
 {
 	std::ostringstream out;

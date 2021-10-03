@@ -36,7 +36,8 @@ public:
 	void NotifyObservers() override
 	{
 		T data = GetChangedData();
-		for (auto it = m_observers.rbegin(); it != m_observers.rend(); it++)
+		std::map<int, ObserverType*> copyObservers = m_observers;
+		for (auto it = copyObservers.rbegin(); it != copyObservers.rend(); it++)
 		{
 			it->second->Update(data);
 		}
