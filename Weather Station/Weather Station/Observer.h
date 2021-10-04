@@ -30,13 +30,13 @@ public:
 
 	void RegisterObserver(ObserverType& observer, int priority) override
 	{
-		m_observers.emplace(abs(priority), &observer);
+		m_observers.emplace(priority, &observer);
 	}
 
 	void NotifyObservers() override
 	{
 		T data = GetChangedData();
-		std::map<int, ObserverType*> copyObservers = m_observers;
+		std::multimap<int, ObserverType*> copyObservers = m_observers;
 		for (auto it = copyObservers.rbegin(); it != copyObservers.rend(); it++)
 		{
 			it->second->Update(data);
@@ -59,5 +59,5 @@ protected:
 	virtual T GetChangedData()const = 0;
 
 private:
-	std::map<int, ObserverType*> m_observers;
+	std::multimap<int, ObserverType*> m_observers;
 };

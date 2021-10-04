@@ -10,8 +10,9 @@ int main()
 	CStatsDisplay statsDisplay;
 	wd.RegisterObserver(statsDisplay, 2);
 
+
 	CDisplayRemoveTest display2(wd);
-	wd.RegisterObserver(display2, 1);
+	wd.RegisterObserver(display2, 2);
 
 	wd.SetMeasurements(3, 0.7, 760);
 	wd.SetMeasurements(4, 0.8, 761);
