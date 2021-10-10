@@ -5,11 +5,11 @@ int main()
 	CWeatherData wdIn;
 	CWeatherData wdOut;
 
-	CDisplay display(wdIn);
+	CDisplay display(wdIn, wdOut);
 	wdIn.RegisterObserver(display, 1);
 	wdOut.RegisterObserver(display, 2);
 
-	CStatsDisplay statsDisplay(wdIn);
+	CStatsDisplay statsDisplay(wdIn, wdOut);
 	wdIn.RegisterObserver(statsDisplay, 9);
 	wdOut.RegisterObserver(statsDisplay, 9);
 

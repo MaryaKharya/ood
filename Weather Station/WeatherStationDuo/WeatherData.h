@@ -15,8 +15,9 @@ struct SWeatherInfo
 class CDisplay : public IObserver<SWeatherInfo>
 {
 public:
-	CDisplay(const IObservable<SWeatherInfo>& in)
+	CDisplay(const IObservable<SWeatherInfo>& in, const IObservable<SWeatherInfo>& out)
 		:m_in(in)
+		, m_out(out)
 	{}
 private:
 	void Update(SWeatherInfo const& data, IObservable<SWeatherInfo> const& observable) override
@@ -35,6 +36,7 @@ private:
 		std::cout << "----------------" << std::endl;
 	}
 	const IObservable<SWeatherInfo>& m_in;
+	const IObservable<SWeatherInfo>& m_out;
 };
 
 class CStatsDisplayOneParameter
@@ -71,8 +73,9 @@ private:
 class CStatsDisplay : public IObserver<SWeatherInfo>
 {
 public:
-	CStatsDisplay(IObservable<SWeatherInfo> const& in)
+	CStatsDisplay(IObservable<SWeatherInfo> const& in, IObservable<SWeatherInfo> const& out)
 		:m_in(in)
+		, m_out(out)
 	{}
 private:
 	void Update(SWeatherInfo const& data, IObservable<SWeatherInfo> const& observable) override
@@ -96,6 +99,7 @@ private:
 	CStatsDisplayOneParameter m_humidity;
 	CStatsDisplayOneParameter m_pressure;
 	IObservable<SWeatherInfo> const& m_in;
+	IObservable<SWeatherInfo> const& m_out;
 };
 
 

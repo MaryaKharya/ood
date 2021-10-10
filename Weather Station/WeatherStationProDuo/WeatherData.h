@@ -16,6 +16,32 @@ struct SWeatherInfo
 	double windDirection = 0;
 };
 
+class CInStats
+{
+public:
+	void Update(SWeatherInfo const& data)
+	{
+		std::cout << "Current Temp " << data.temperature << std::endl;
+		std::cout << "Current Hum " << data.humidity << std::endl;
+		std::cout << "Current Pressure " << data.pressure << std::endl;
+		std::cout << "----------------" << std::endl;
+	}
+};
+
+class COutStats
+{
+public:
+	void Update(SWeatherInfo const& data)
+	{
+		std::cout << "Current Temp " << data.temperature << std::endl;
+		std::cout << "Current Hum " << data.humidity << std::endl;
+		std::cout << "Current Pressure " << data.pressure << std::endl;
+		std::cout << "Current Wind Speed " << data.windSpeed << std::endl;
+		std::cout << "Current Wind Direction " << data.windDirection << std::endl;
+		std::cout << "----------------" << std::endl;
+	}
+};
+
 class CDisplay : public IObserver<SWeatherInfo>
 {
 public:
@@ -28,18 +54,16 @@ private:
 		if (&observable == &m_in)
 		{
 			std::cout << "Indoor station:" << std::endl;
+			m_inStats.Update(data);
 		}
 		else
 		{
 			std::cout << "Outdoor station:" << std::endl;
-			std::cout << "Current Wind Speed " << data.windSpeed << std::endl;
-			std::cout << "Current Wind Direction " << data.windDirection << std::endl;
+			m_outStats.Update(data);
 		}
-		std::cout << "Current Temp " << data.temperature << std::endl;
-		std::cout << "Current Hum " << data.humidity << std::endl;
-		std::cout << "Current Pressure " << data.pressure << std::endl;
-		std::cout << "----------------" << std::endl;
 	}
+	CInStats m_inStats;
+	COutStats m_outStats;
 	const IObservable<SWeatherInfo>& m_in;
 };
 
