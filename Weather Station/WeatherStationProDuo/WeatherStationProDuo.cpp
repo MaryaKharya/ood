@@ -3,17 +3,17 @@
 int main()
 {
 	CWeatherData wdIn;
-	CWeatherData wdOut;
+	CWeatherDataPro wdOut;
 
-	CDisplay display(wdIn);
+	CDisplay display(wdIn, wdOut);
 	wdIn.RegisterObserver(display, 1);
 	wdOut.RegisterObserver(display, 2);
 
-	CStatsDisplay statsDisplay(wdIn);
-	wdIn.RegisterObserver(statsDisplay, 9);
+	CStatsDisplay statsDisplay(wdIn, wdOut);
+	wdIn.RegisterObserver(statsDisplay, 3);
 	wdOut.RegisterObserver(statsDisplay, 9);
 
-	wdIn.SetMeasurements(3, 0.7, 760, 10, 270);
+	wdIn.SetMeasurements(3, 0.7, 760);
 	wdOut.SetMeasurements(4, 0.8, 761, 15, 180);
 	return 0;
 }

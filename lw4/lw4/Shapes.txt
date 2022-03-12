@@ -1,0 +1,15 @@
+triangle 375.5 284 479.5 236 382.5 162 black
+triangle 597.5 288.5 715.5 318.5 624 400 black
+polygon 7 483 377 144.5 black
+ellipse 440 330 30 20 green
+ellipse 532 376 30 20 green
+ellipse 440 330 20 20 green
+ellipse 532 376 20 20 green
+triangle 446 399 473 414.5 448 426 pink
+triangle 426 451.5 445.5 437 450.5 460.5 red
+rectangle 448.5 510 100 147 black
+rectangle 548.5 550 211 310 black
+triangle 455 656.5 479.5 830.5 430.5 830.5 black
+triangle 515 656.5 539.5 830.5 490.5 830.5 black
+ellipse 440 850 30 20 black
+ellipse 510 850 30 20 black

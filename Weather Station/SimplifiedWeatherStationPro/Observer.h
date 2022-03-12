@@ -32,7 +32,7 @@ public:
 	{
 		m_observers.emplace(abs(priority), &observer);
 	}
-	1
+	
 	void NotifyObservers() override
 	{
 		T data = GetChangedData();
